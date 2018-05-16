@@ -7,8 +7,6 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using global::GitLabClient.Helpers.Extensions;
-
     public class ApiConnection : IApiConnection
     {
         private readonly IApiPagination pagination;

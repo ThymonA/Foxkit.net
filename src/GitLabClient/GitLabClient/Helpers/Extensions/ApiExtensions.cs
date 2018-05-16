@@ -1,4 +1,4 @@
-﻿namespace GitLabClient.Helpers.Extensions
+﻿namespace GitLabClient
 {
     using System;
     using System.Threading;

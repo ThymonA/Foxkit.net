@@ -6,7 +6,7 @@
     /// <summary>
     /// A client for GitLab's Users API
     /// </summary>
-    public interface IUsersClient
+    public interface IUserClient
     {
         /// <summary>
         /// A client for GitLab's User SSH Keys API

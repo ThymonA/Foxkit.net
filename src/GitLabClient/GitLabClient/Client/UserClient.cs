@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class UserClient : ApiClient, IUsersClient
+    public class UserClient : ApiClient, IUserClient
     {
         private static readonly Uri UserEndpoint = new Uri(nameof(User), UriKind.Relative);
 
