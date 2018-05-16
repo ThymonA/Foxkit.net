@@ -99,5 +99,43 @@
 
             return GetApiErrorFromExceptionMessage(responseBody);
         }
+
+        /// <summary>
+        /// Get the inner error message from the API response
+        /// </summary>
+        /// <remarks>
+        /// Returns null if ApiError is not populated
+        /// </remarks>
+        protected string ApiErrorMessageSafe
+        {
+            get
+            {
+                if (ApiError != null && !string.IsNullOrWhiteSpace(ApiError.Message))
+                {
+                    return ApiError.Message;
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get the inner http response body from the API response
+        /// </summary>
+        /// <remarks>
+        /// Returns empty string if HttpResponse is not populated or if
+        /// response body is not a string
+        /// </remarks>
+        protected string HttpResponseBodySafe =>
+            HttpResponse != null
+            && !HttpResponse.ContentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase)
+            && HttpResponse.Body is string
+                ? (string)HttpResponse.Body : string.Empty;
+
+        public override string ToString()
+        {
+            var original = base.ToString();
+            return original + Environment.NewLine + HttpResponseBodySafe;
+        }
     }
 }

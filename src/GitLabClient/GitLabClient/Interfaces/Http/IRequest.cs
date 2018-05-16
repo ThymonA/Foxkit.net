@@ -16,8 +16,10 @@
 
         Uri BaseAddress { get; }
 
+        Uri Endpoint { get; }
+
         TimeSpan Timeout { get; }
 
-        string ContentType { get; }
+        string ContentType { get; set; }
     }
 }
