@@ -16,10 +16,6 @@
         public static readonly Uri DefaultGitLabUri = GitLabClient.GitLabUri;
         private static readonly ICredentialStore AnonymousCredentials = new InMemoryCredentialStore(global::GitLabClient.Credentials.Anonymous);
 
-        private readonly IAuthenticator authenticator;
-        private readonly IHttpClient httpClient;
-        private readonly IJsonHttpPipeline jsonPipeline;
-
         public Connection(IProductHeaderValue productInformation)
             : this(productInformation, DefaultGitLabUri, AnonymousCredentials)
         {
@@ -69,6 +65,70 @@
             authenticator = new Authenticator(credentialStore);
             this.httpClient = httpClient;
             jsonPipeline = new JsonHttpPipeline(serializer);
+        }
+
+        public static string FormatUserAgent(IProductHeaderValue productInformation)
+        {
+            return string.Format(
+                CultureInfo.InvariantCulture,
+                "{0} ({1}; {2}; Octokit {3})",
+                productInformation,
+                GetPlatformInformation(),
+                GetCultureInformation(),
+                GetVersionInformation());
+        }
+
+        public static string GetPlatformInformation()
+        {
+            if (string.IsNullOrEmpty(platformInformation))
+            {
+                try
+                {
+                    platformInformation = string.Format(
+                        CultureInfo.InvariantCulture,
+                    #if !HAS_ENVIRONMENT
+                        "{0}; {1}",
+                        RuntimeInformation.OSDescription.Trim(),
+                        RuntimeInformation.OSArchitecture.ToString().ToLowerInvariant().Trim()
+                    #else
+                        "{0} {1}; {2}",
+                        Environment.OSVersion.Platform,
+                        Environment.OSVersion.Version.ToString(3),
+                        Environment.Is64BitOperatingSystem ? "amd64" : "x86"
+                    #endif
+                    );
+                }
+                catch
+                {
+                    platformInformation = "Unknown Platform";
+                }
+            }
+
+            return platformInformation;
+        }
+
+        public static string GetCultureInformation()
+        {
+            return CultureInfo.CurrentCulture.Name;
+        }
+
+        public static string GetVersionInformation()
+        {
+            if (string.IsNullOrEmpty(versionInformation))
+            {
+                versionInformation = typeof(IGitLabClient)
+                    .GetTypeInfo()
+                    .Assembly
+                    .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+                    .InformationalVersion;
+            }
+
+            return versionInformation;
+        }
+
+        public static IApiInfo GetLatestApiInfo()
+        {
+            return latestApiInfo?.Clone();
         }
 
         public Task<IApiResponse<string>> GetHtml(Uri uri, IDictionary<string, string> parameters)
@@ -130,7 +190,9 @@
             uri.ArgumentNotNull(nameof(uri));
             accepts.ArgumentNotNull(nameof(accepts));
 
-            var response = 
+            var response = await SendData<object>(uri, HttpVerb.Patch, null, accepts, null, CancellationToken.None).ConfigureAwait(false);
+
+            return response.HttpResponse.StatusCode;
         }
 
         public Task<IApiResponse<T>> Patch<T>(Uri uri, object body)
@@ -152,167 +214,180 @@
             return SendData<T>(uri, HttpVerb.Patch, body, accepts, null, CancellationToken.None);
         }
 
-        public Task<HttpStatusCode> Post(Uri uri)
+        public async Task<HttpStatusCode> Post(Uri uri)
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+
+            var response = await SendData<object>(uri, HttpMethod.Post, null, null, null, CancellationToken.None).ConfigureAwait(false);
+
+            return response.HttpResponse.StatusCode;
         }
 
         public Task<IApiResponse<T>> Post<T>(Uri uri)
             where T : class
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+
+            return SendData<T>(uri, HttpMethod.Post, null, null, null, CancellationToken.None);
         }
 
         public Task<IApiResponse<T>> Post<T>(Uri uri, object body, string accepts, string contentType)
             where T : class
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            body.ArgumentNotNull(nameof(body));
+
+            return SendData<T>(uri, HttpMethod.Post, body, accepts, contentType, CancellationToken.None);
         }
 
         public Task<IApiResponse<T>> Post<T>(Uri uri, object body, string accepts, string contentType, string twoFactorAuthenticationCode)
             where T : class
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            body.ArgumentNotNull(nameof(body));
+            twoFactorAuthenticationCode.ArgumentNotNullOrEmptyString(nameof(twoFactorAuthenticationCode));
+
+            return SendData<T>(uri, HttpMethod.Post, body, accepts, contentType, CancellationToken.None, twoFactorAuthenticationCode);
         }
 
         public Task<IApiResponse<T>> Post<T>(Uri uri, object body, string accepts, string contentType, TimeSpan timeout)
             where T : class
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            body.ArgumentNotNull(nameof(body));
+
+            return SendData<T>(uri, HttpMethod.Post, body, accepts, contentType, timeout, CancellationToken.None);
         }
 
         public Task<IApiResponse<T>> Post<T>(Uri uri, object body, string accepts, string contentType, Uri baseAddress)
             where T : class
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            body.ArgumentNotNull(nameof(body));
+
+            return SendData<T>(uri, HttpMethod.Post, body, accepts, contentType, CancellationToken.None, null, baseAddress);
         }
 
-        public Task<HttpStatusCode> Put(Uri uri)
+        public async Task<HttpStatusCode> Put(Uri uri)
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+
+            var request = new Request
+            {
+                Method = HttpMethod.Put,
+                BaseAddress = BaseAddress,
+                Endpoint = uri
+            };
+
+            var response = await Run<object>(request, CancellationToken.None).ConfigureAwait(false);
+
+            return response.HttpResponse.StatusCode;
         }
 
         public Task<IApiResponse<T>> Put<T>(Uri uri, object body)
             where T : class
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            body.ArgumentNotNull(nameof(body));
+
+            return SendData<T>(uri, HttpMethod.Put, body, null, null, CancellationToken.None);
         }
 
         public Task<IApiResponse<T>> Put<T>(Uri uri, object body, string twoFactorAuthenticationCode)
             where T : class
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            body.ArgumentNotNull(nameof(body));
+            twoFactorAuthenticationCode.ArgumentNotNullOrEmptyString(nameof(twoFactorAuthenticationCode));
+
+            return SendData<T>(uri, HttpMethod.Put, body, null, null, CancellationToken.None, twoFactorAuthenticationCode);
         }
 
         public Task<IApiResponse<T>> Put<T>(Uri uri, object body, string twoFactorAuthenticationCode, string accepts)
             where T : class
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            body.ArgumentNotNull(nameof(body));
+            twoFactorAuthenticationCode.ArgumentNotNullOrEmptyString(nameof(twoFactorAuthenticationCode));
+
+            return SendData<T>(uri, HttpMethod.Put, body, accepts, null, CancellationToken.None, twoFactorAuthenticationCode);
         }
 
-        public Task<HttpStatusCode> Delete(Uri uri)
+        public async Task<HttpStatusCode> Delete(Uri uri)
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+
+            var request = new Request
+            {
+                Method = HttpMethod.Delete,
+                BaseAddress = BaseAddress,
+                Endpoint = uri
+            };
+
+            var response = await Run<object>(request, CancellationToken.None).ConfigureAwait(false);
+
+            return response.HttpResponse.StatusCode;
         }
 
-        public Task<HttpStatusCode> Delete(Uri uri, string twoFactoryAuthenticationCode)
+        public async Task<HttpStatusCode> Delete(Uri uri, string twoFactoryAuthenticationCode)
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            twoFactoryAuthenticationCode.ArgumentNotNullOrEmptyString(nameof(twoFactoryAuthenticationCode));
+
+            var response = await SendData<object>(uri, HttpMethod.Delete, null, null, null, CancellationToken.None, twoFactoryAuthenticationCode).ConfigureAwait(false);
+
+            return response.HttpResponse.StatusCode;
         }
 
-        public Task<HttpStatusCode> Delete(Uri uri, object data)
+        public async Task<HttpStatusCode> Delete(Uri uri, object data)
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            data.ArgumentNotNull(nameof(data));
+
+            var request = new Request
+            {
+                Method = HttpMethod.Delete,
+                Body = data,
+                BaseAddress = BaseAddress,
+                Endpoint = uri
+            };
+
+            var response = await Run<object>(request, CancellationToken.None).ConfigureAwait(false);
+
+            return response.HttpResponse.StatusCode;
         }
 
-        public Task<HttpStatusCode> Delete(Uri uri, object data, string accepts)
+        public async Task<HttpStatusCode> Delete(Uri uri, object data, string accepts)
         {
-            throw new NotImplementedException();
+            uri.ArgumentNotNull(nameof(uri));
+            data.ArgumentNotNull(nameof(data));
+            accepts.ArgumentNotNull(nameof(accepts));
+
+            var response = await SendData<object>(uri, HttpMethod.Delete, data, accepts, null, CancellationToken.None).ConfigureAwait(false);
+
+            return response.HttpResponse.StatusCode;
         }
 
         public Uri BaseAddress { get; }
 
         public string UserAgent { get; }
 
-        public ICredentialStore CredentialStore { get; }
+        public ICredentialStore CredentialStore => authenticator.CredentialStore;
 
         public ICredentials Credentials { get; set; }
 
         public void SetRequestTimeout(TimeSpan timeout)
         {
-            throw new NotImplementedException();
-        }
-
-        public static string FormatUserAgent(IProductHeaderValue productInformation)
-        {
-            return string.Format(
-                CultureInfo.InvariantCulture,
-                "{0} ({1}; {2}; Octokit {3})",
-                productInformation,
-                GetPlatformInformation(),
-                GetCultureInformation(),
-                GetVersionInformation());
+            httpClient.SetRequestTimeout(timeout);
         }
 
         private static string platformInformation;
 
-        public static string GetPlatformInformation()
-        {
-            if (string.IsNullOrEmpty(platformInformation))
-            {
-                try
-                {
-                    platformInformation = string.Format(CultureInfo.InvariantCulture,
-                    #if !HAS_ENVIRONMENT
-                    "{0}; {1}",
-                    RuntimeInformation.OSDescription.Trim(),
-                    RuntimeInformation.OSArchitecture.ToString().ToLowerInvariant().Trim()
-                    #else
-                    "{0} {1}; {2}",
-                    Environment.OSVersion.Platform,
-                    Environment.OSVersion.Version.ToString(3),
-                    Environment.Is64BitOperatingSystem ? "amd64" : "x86"
-                    #endif
-                    );
-                }
-                catch
-                {
-                    platformInformation = "Unknown Platform";
-                }
-            }
-
-            return platformInformation;
-        }
-
-        static string GetCultureInformation()
-        {
-            return CultureInfo.CurrentCulture.Name;
-        }
-
         private static string versionInformation;
-
-        public static string GetVersionInformation()
-        {
-            if (string.IsNullOrEmpty(versionInformation))
-            {
-                versionInformation = typeof(IGitLabClient)
-                    .GetTypeInfo()
-                    .Assembly
-                    .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
-                    .InformationalVersion;
-            }
-
-            return versionInformation;
-        }
 
         private static IApiInfo latestApiInfo;
 
-        public static IApiInfo GetLatestApiInfo()
-        {
-            return latestApiInfo?.Clone();
-        }
-
-        private static readonly Dictionary<HttpStatusCode, Func<IResponse, Exception>> httpExceptionMap =
+        private static readonly Dictionary<HttpStatusCode, Func<IResponse, Exception>> HttpExceptionMap =
             new Dictionary<HttpStatusCode, Func<IResponse, Exception>>
             {
                 { HttpStatusCode.Unauthorized, GetExceptionForUnauthorized },
@@ -333,7 +408,7 @@
 
         private static Exception GetExceptionForForbidden(IResponse response)
         {
-            var body = response.Body as string ?? "";
+            var body = response.Body as string ?? string.Empty;
 
             if (body.Contains("rate limit exceeded"))
             {
@@ -352,6 +427,12 @@
 
             return new ForbiddenException(response);
         }
+
+        private readonly IAuthenticator authenticator;
+
+        private readonly IHttpClient httpClient;
+
+        private readonly IJsonHttpPipeline jsonPipeline;
 
         private async Task<IApiResponse<string>> GetHtml(IRequest request)
         {
@@ -467,7 +548,7 @@
         private void HandleErrors(IResponse response)
         {
             Func<IResponse, Exception> exceptionFunc;
-            if (httpExceptionMap.TryGetValue(response.StatusCode, out exceptionFunc))
+            if (HttpExceptionMap.TryGetValue(response.StatusCode, out exceptionFunc))
             {
                 throw exceptionFunc(response);
             }
