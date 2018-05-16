@@ -16,7 +16,7 @@
         IReadOnlyList<string> AcceptedOauthScopes { get; }
 
         /// <summary>
-        /// Etag
+        /// Entity Tags
         /// </summary>
         string Etag { get; }
 
@@ -24,5 +24,12 @@
         /// Links to things like next/previous pages
         /// </summary>
         IReadOnlyDictionary<string, Uri> Links { get; }
+
+        /// <summary>
+        /// Information about the API rate limit
+        /// </summary>
+        IRateLimit RateLimit { get; }
+
+        IApiInfo Clone();
     }
 }

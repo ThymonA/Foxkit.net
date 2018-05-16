@@ -238,5 +238,11 @@
         /// Gets or sets the credentials used by the connection.
         /// </summary>
         ICredentials Credentials { get; set; }
+
+        /// <summary>
+        /// Set the GitLab API request timeout.
+        /// </summary>
+        /// <param name="timeout">The Timeout value</param>
+        void SetRequestTimeout(TimeSpan timeout);
     }
 }

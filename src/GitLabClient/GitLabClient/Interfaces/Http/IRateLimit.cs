@@ -23,5 +23,11 @@
         /// </summary>
         [Parameter(Key = "ignoreThisField")]
         DateTimeOffset Reset { get; }
+
+        /// <summary>
+        /// Allows you to clone RateLimit
+        /// </summary>
+        /// <returns>A clone of <seealso cref="IRateLimit"/></returns>
+        IRateLimit Clone();
     }
 }

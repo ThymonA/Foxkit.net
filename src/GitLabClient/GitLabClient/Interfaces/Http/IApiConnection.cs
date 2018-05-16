@@ -21,7 +21,8 @@
         /// <typeparam name="T">Object Type</typeparam>
         /// <param name="uri">URI endpoint</param>
         /// <returns>The API resource</returns>
-        Task<T> Get<T>(Uri uri);
+        Task<T> Get<T>(Uri uri)
+            where T : class;
 
         /// <summary>
         /// Get the API resource at the specified URI
@@ -30,7 +31,8 @@
         /// <param name="uri">URI endpoint</param>
         /// <param name="parameters">Parameters to add to the API request</param>
         /// <returns>The API resource</returns>
-        Task<T> Get<T>(Uri uri, IDictionary<string, string> parameters);
+        Task<T> Get<T>(Uri uri, IDictionary<string, string> parameters)
+            where T : class;
 
         /// <summary>
         /// Get the API resource at the specified URI
@@ -40,7 +42,8 @@
         /// <param name="parameters">Querystring parameters</param>
         /// <param name="accepts">Specifies accepted response media types</param>
         /// <returns>The API resource</returns>
-        Task<T> Get<T>(Uri uri, IDictionary<string, string> parameters, string accepts);
+        Task<T> Get<T>(Uri uri, IDictionary<string, string> parameters, string accepts)
+            where T : class;
 
         /// <summary>
         /// Gets the HTML content of the API resource at the specified URI.
@@ -56,7 +59,8 @@
         /// <typeparam name="T">Object Type</typeparam>
         /// <param name="uri">URI endpoint</param>
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list</returns>
-        Task<IReadOnlyList<T>> GetAll<T>(Uri uri);
+        Task<IReadOnlyList<T>> GetAll<T>(Uri uri)
+            where T : class;
 
         /// <summary>
         /// Gets all API resources in the list at the specified URI
@@ -65,7 +69,8 @@
         /// <param name="uri">URI endpoint</param>
         /// <param name="options">Options for changing the API response</param>
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list</returns>
-        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IApiOptions options);
+        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IApiOptions options)
+            where T : class;
 
         /// <summary>
         /// Gets all API resources in the list at the specified URI
@@ -74,7 +79,8 @@
         /// <param name="uri">URI endpoint</param>
         /// <param name="accepts">Specifies accepted response media types</param>
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list</returns>
-        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, string accepts);
+        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, string accepts)
+            where T : class;
 
         /// <summary>
         /// Gets all API resources in the list at the specified URI
@@ -83,7 +89,8 @@
         /// <param name="uri">URI endpoint</param>
         /// <param name="parameters">Querystring parameters</param>
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list</returns>
-        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters);
+        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters)
+            where T : class;
 
         /// <summary>
         /// Gets all API resources in the list at the specified URI
@@ -93,7 +100,8 @@
         /// <param name="parameters">Querystring parameters</param>
         /// <param name="options">Options for changing the API response</param>
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list</returns>
-        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters, IApiOptions options);
+        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters, IApiOptions options)
+            where T : class;
 
         /// <summary>
         /// Gets all API resources in the list at the specified URI
@@ -103,7 +111,8 @@
         /// <param name="parameters">Querystring parameters</param>
         /// <param name="accepts">Specifies accepted response media types</param>
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list</returns>
-        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters, string accepts);
+        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters, string accepts)
+            where T : class;
 
         /// <summary>
         /// Gets all API resources in the list at the specified URI
@@ -114,7 +123,8 @@
         /// <param name="accepts">Specifies accepted response media types</param>
         /// <param name="options">Options for changing the API response</param>
         /// <returns><see cref="IReadOnlyList{T}"/> of the The API resources in the list</returns>
-        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters, string accepts, IApiOptions options);
+        Task<IReadOnlyList<T>> GetAll<T>(Uri uri, IDictionary<string, string> parameters, string accepts, IApiOptions options)
+            where T : class;
 
         /// <summary>
         /// Creates a new API resource in the list at the specified URI
@@ -129,7 +139,8 @@
         /// <typeparam name="T">Object Type</typeparam>
         /// <param name="uri">URI endpoint</param>
         /// <returns>The created API resource</returns>
-        Task<T> Post<T>(Uri uri);
+        Task<T> Post<T>(Uri uri)
+            where T : class;
 
         /// <summary>
         /// Creates a new API resource in the list at the specified URI
@@ -138,7 +149,8 @@
         /// <param name="uri">URI endpoint</param>
         /// <param name="body">The object to serialize as the body of the request</param>
         /// <returns>The created API resource</returns>
-        Task<T> Post<T>(Uri uri, object body);
+        Task<T> Post<T>(Uri uri, object body)
+            where T : class;
 
         /// <summary>
         /// Creates a new API resource in the list at the specified URI
@@ -148,7 +160,8 @@
         /// <param name="body">The object to serialize as the body of the request</param>
         /// <param name="accepts">Specifies accepted response media types</param>
         /// <returns>The created API resource</returns>
-        Task<T> Post<T>(Uri uri, object body, string accepts);
+        Task<T> Post<T>(Uri uri, object body, string accepts)
+            where T : class;
 
         /// <summary>
         /// Creates a new API resource in the list at the specified URI
@@ -159,7 +172,8 @@
         /// <param name="accepts">Specifies accepted response media types</param>
         /// <param name="contentType">Specifies the media type of the request body</param>
         /// <returns>The created API resource</returns>
-        Task<T> Post<T>(Uri uri, object body, string accepts, string contentType);
+        Task<T> Post<T>(Uri uri, object body, string accepts, string contentType)
+            where T : class;
 
         /// <summary>
         /// Creates a new API resource in the list at the specified URI
@@ -171,7 +185,8 @@
         /// <param name="contentType">Specifies the media type of the request body</param>
         /// <param name="twoFactorAuthenticationCode">Two factory authentication code</param>
         /// <returns>The created API resource</returns>
-        Task<T> Post<T>(Uri uri, object body, string accepts, string contentType, string twoFactorAuthenticationCode);
+        Task<T> Post<T>(Uri uri, object body, string accepts, string contentType, string twoFactorAuthenticationCode)
+            where T : class;
 
         /// <summary>
         /// Creates a new API resource in the list at the specified URI
@@ -183,7 +198,8 @@
         /// <param name="contentType">Specifies the media type of the request body</param>
         /// <param name="timeout">Expiration time of the request</param>
         /// <returns>The created API resource</returns>
-        Task<T> Post<T>(Uri uri, object body, string accepts, string contentType, TimeSpan timeout);
+        Task<T> Post<T>(Uri uri, object body, string accepts, string contentType, TimeSpan timeout)
+            where T : class;
 
         /// <summary>
         /// Creates or replaces the API resource at the specified URI
@@ -199,7 +215,8 @@
         /// <param name="uri">URI endpoint</param>
         /// <param name="body">The object to serialize as the body of the request</param>
         /// <returns>The created API resource</returns>
-        Task<T> Put<T>(Uri uri, object body);
+        Task<T> Put<T>(Uri uri, object body)
+            where T : class;
 
         /// <summary>
         /// Creates or replaces the API resource at the specified URI
@@ -209,7 +226,8 @@
         /// <param name="body">The object to serialize as the body of the request</param>
         /// <param name="twoFactorAuthenticationCode">Two factory authentication code</param>
         /// <returns>The created API resource</returns>
-        Task<T> Put<T>(Uri uri, object body, string twoFactorAuthenticationCode);
+        Task<T> Put<T>(Uri uri, object body, string twoFactorAuthenticationCode)
+            where T : class;
 
         /// <summary>
         /// Creates or replaces the API resource at the specified URI
@@ -220,7 +238,8 @@
         /// <param name="twoFactorAuthenticationCode">Two factory authentication code</param>
         /// <param name="accepts">Specifies accepted response media types</param>
         /// <returns>The created API resource</returns>
-        Task<T> Put<T>(Uri uri, object body, string twoFactorAuthenticationCode, string accepts);
+        Task<T> Put<T>(Uri uri, object body, string twoFactorAuthenticationCode, string accepts)
+            where T : class;
 
         /// <summary>
         /// Update the API resource at the specified URI
@@ -244,7 +263,8 @@
         /// <param name="uri">URI endpoint</param>
         /// <param name="body">The object to serialize as the body of the request</param>
         /// <returns></returns>
-        Task<T> Patch<T>(Uri uri, object body);
+        Task<T> Patch<T>(Uri uri, object body)
+            where T : class;
 
         /// <summary>
         /// Update the API resource at the specified URI
@@ -254,7 +274,8 @@
         /// <param name="body">The object to serialize as the body of the request</param>
         /// <param name="accepts">Specifies accepted response media types</param>
         /// <returns></returns>
-        Task<T> Patch<T>(Uri uri, object body, string accepts);
+        Task<T> Patch<T>(Uri uri, object body, string accepts)
+            where T : class;
 
         /// <summary>
         /// Deletes the API object at the specified URI
@@ -274,21 +295,19 @@
         /// <summary>
         /// Deletes the API object at the specified URI
         /// </summary>
-        /// <typeparam name="T">Object Type</typeparam>
         /// <param name="uri">URI endpoint</param>
         /// <param name="body">The object to serialize as the body of the request</param>
         /// <returns></returns>
-        Task<T> Delete<T>(Uri uri, object body);
+        Task Delete(Uri uri, object body);
 
         /// <summary>
         /// Deletes the API object at the specified URI
         /// </summary>
-        /// <typeparam name="T">Object Type</typeparam>
         /// <param name="uri">URI endpoint</param>
         /// <param name="body">The object to serialize as the body of the request</param>
         /// <param name="accepts">Specifies accepted response media types</param>
         /// <returns></returns>
-        Task<T> Delete<T>(Uri uri, object body, string accepts);
+        Task Delete(Uri uri, object body, string accepts);
 
         /// <summary>
         /// Executes a GET to the API object at the specified URI. This operation is appropriate for API calls which 
@@ -300,6 +319,7 @@
         /// <param name="uri">URI endpoint</param>
         /// <param name="cancellationToken">A token used to cancel this potentially long running request</param>
         /// <returns></returns>
-        Task<IReadOnlyList<T>> GetQueuedOperation<T>(Uri uri, CancellationToken cancellationToken);
+        Task<IReadOnlyList<T>> GetQueuedOperation<T>(Uri uri, CancellationToken cancellationToken)
+            where T : class;
     }
 }

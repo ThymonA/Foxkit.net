@@ -1,7 +1,9 @@
 ﻿namespace GitLabClient
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Text.RegularExpressions;
 
     public static class StringExtension
@@ -26,6 +28,13 @@
             pattern.ArgumentNotNullOrEmptyString(nameof(pattern));
 
             return new Uri(string.Format(CultureInfo.InvariantCulture, pattern, args), UriKind.Relative);
+        }
+
+        public static List<string> HeaderValueToList(this string header)
+        {
+            return header.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => x.Trim())
+                .ToList();
         }
     }
 }
