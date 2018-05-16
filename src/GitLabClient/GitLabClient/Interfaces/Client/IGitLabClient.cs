@@ -14,5 +14,10 @@
         /// Provides a client connection to make HTTP requests to endpoints
         /// </summary>
         IConnection Connection { get; }
+
+        /// <summary>
+        /// Access GitLab's Authorization API.
+        /// </summary>
+        IAuthorizationsClient Authorization { get; }
     }
 }
