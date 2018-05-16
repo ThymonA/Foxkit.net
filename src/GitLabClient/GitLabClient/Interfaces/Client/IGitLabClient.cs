@@ -1,4 +1,4 @@
-﻿namespace GitLabClient.Interfaces.Client
+﻿namespace GitLabClient
 {
     using System;
 
@@ -9,5 +9,10 @@
         /// </summary>
         /// <param name="timeout">The Timeout value</param>
         void SetRequestTimeout(TimeSpan timeout);
+
+        /// <summary>
+        /// Provides a client connection to make HTTP requests to endpoints
+        /// </summary>
+        IConnection Connection { get; }
     }
 }

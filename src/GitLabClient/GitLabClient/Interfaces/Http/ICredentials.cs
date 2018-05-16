@@ -1,7 +1,5 @@
-﻿namespace GitLabClient.Interfaces.Http
+﻿namespace GitLabClient
 {
-    using GitLabClient.Helpers.Enums;
-
     public interface ICredentials
     {
         string Login { get; }

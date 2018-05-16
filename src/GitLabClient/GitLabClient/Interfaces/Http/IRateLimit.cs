@@ -1,9 +1,7 @@
-﻿namespace GitLabClient.Interfaces.Http
+﻿namespace GitLabClient
 {
     using System;
     using System.Runtime.Serialization;
-
-    using GitLabClient.Helpers.Attributes;
 
     public interface IRateLimit
         #if !NO_SERIALIZABLE

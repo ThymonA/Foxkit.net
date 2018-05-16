@@ -1,4 +1,4 @@
-﻿namespace GitLabClient.Interfaces.Http
+﻿namespace GitLabClient
 {
     public interface IApiResponse<T>
         where T : class

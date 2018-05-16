@@ -1,4 +1,4 @@
-﻿namespace GitLabClient.Helpers.Attributes
+﻿namespace GitLabClient
 {
     using System;
 

@@ -1,4 +1,4 @@
-﻿namespace GitLabClient.Helpers.Enums
+﻿namespace GitLabClient
 {
     /// <summary>
     /// Authentication protocols supported by the GitLab API

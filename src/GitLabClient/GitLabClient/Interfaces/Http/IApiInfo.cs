@@ -1,4 +1,4 @@
-﻿namespace GitLabClient.Interfaces.Http
+﻿namespace GitLabClient
 {
     using System;
     using System.Collections.Generic;
