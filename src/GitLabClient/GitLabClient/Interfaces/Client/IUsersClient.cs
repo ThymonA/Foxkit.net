@@ -9,6 +9,16 @@
     public interface IUsersClient
     {
         /// <summary>
+        /// A client for GitLab's User SSH Keys API
+        /// </summary>
+        IUserSshKeysClient SshKey { get; }
+
+        /// <summary>
+        /// A client for GitLab's User GPG Keys API
+        /// </summary>
+        IUserGpgKeysClient GpgKey { get; }
+
+        /// <summary>
         /// Returns the user specified by the login
         /// </summary>
         /// <param name="login"></param>
