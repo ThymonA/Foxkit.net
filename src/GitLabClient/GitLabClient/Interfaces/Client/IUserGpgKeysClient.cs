@@ -45,6 +45,6 @@
         /// </summary>
         /// <param name="id">The Id of the GPG key</param>
         /// <returns>A <see cref="HttpStatusCode"/></returns>
-        Task<HttpStatusCode> Delete(long id);
+        Task Delete(long id);
     }
 }

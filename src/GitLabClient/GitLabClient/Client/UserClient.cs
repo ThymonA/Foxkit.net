@@ -4,15 +4,15 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using GitLabClient.Helpers.Extensions;
-
     public class UserClient : ApiClient, IUsersClient
     {
-        private static readonly Uri _userEndpoint = new Uri(nameof(User), UriKind.Relative);
+        private static readonly Uri UserEndpoint = new Uri(nameof(User), UriKind.Relative);
 
         public UserClient(IApiConnection apiConnection)
             : base(apiConnection)
         {
+            SshKey = new UserSshKeysClient(apiConnection);
+            GpgKey = new UserGpgKeysClient(apiConnection);
         }
 
         public IUserSshKeysClient SshKey { get; }
@@ -28,19 +28,19 @@
 
         public Task<IReadOnlyList<User>> GetAll()
         {
-            return ApiConnection.Get
+            return ApiConnection.GetAll<User>(ApiUrls.Users());
         }
 
         public Task<User> Current()
         {
-            return ApiConnection.Get<User>(_userEndpoint);
+            return ApiConnection.Get<User>(UserEndpoint);
         }
 
         public Task<User> Update(UserUpdate user)
         {
             user.ArgumentNotNull(nameof(user));
 
-            return ApiConnection.
+            return ApiConnection.Patch<User>(UserEndpoint, user);
         }
     }
 }

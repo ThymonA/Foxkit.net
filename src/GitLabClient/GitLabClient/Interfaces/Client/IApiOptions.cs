@@ -2,8 +2,6 @@
 {
     public interface IApiOptions
     {
-        IApiOptions None { get; }
-
         /// <summary>
         /// Specify the start page for pagination actions
         /// </summary>

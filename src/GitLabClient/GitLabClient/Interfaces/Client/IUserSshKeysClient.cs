@@ -44,7 +44,7 @@
         /// Deletes the SSH key for the speciefied id
         /// </summary>
         /// <param name="id">The Id of the SSH key</param>
-        /// <returns>A <see cref="HttpStatusCode"/></returns>
-        Task<HttpStatusCode> Delete(long id);
+        /// <returns></returns>
+        Task Delete(long id);
     }
 }

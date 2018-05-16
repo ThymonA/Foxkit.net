@@ -3,8 +3,6 @@
     using System.Diagnostics;
     using System.Globalization;
 
-    using GitLabClient.Helpers.Extensions;
-
     [DebuggerDisplay("{" + nameof(DebuggerDisplay) + ",nq}")]
     public class NewGpgKey
     {
