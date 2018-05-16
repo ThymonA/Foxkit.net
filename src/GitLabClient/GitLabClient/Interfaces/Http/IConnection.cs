@@ -192,7 +192,6 @@
         Task<IApiResponse<T>> Put<T>(Uri uri, object body, string twoFactorAuthenticationCode, string accepts)
             where T : class;
 
-
         /// <summary>
         /// Performs an asynchronous HTTP DELETE request.
         /// </summary>
@@ -229,7 +228,6 @@
         /// Base address for the connection
         /// </summary>
         Uri BaseAddress { get; }
-
 
         /// <summary>
         /// Get she <seealso cref="ICredentialStore"/> used to provide credentials for the connection
