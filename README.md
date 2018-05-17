@@ -39,9 +39,9 @@ Console.WriteLine("Hello "  user.Username + " your account has been created on "
 
 ## Getting Started
 
-Foxkit is a GitLab API client library for .NET and is not released.
+Foxkit is a GitLab API client library for .NET and is available on NuGet:
 ```console
-Install-Package ....
+Install-Package Foxkit.NET
 ```
 
 ## Documentation
