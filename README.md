@@ -1,6 +1,6 @@
 # Foxkit - GitLab API Client Library for .NET
 
-![Logo](foxkit.png){ width=150px }
+![Logo](foxkit.png)
 
 Foxkit is a client library that provides an easy way to interact with the [GitLab API](https://docs.gitlab.com/ee/api/)
 
