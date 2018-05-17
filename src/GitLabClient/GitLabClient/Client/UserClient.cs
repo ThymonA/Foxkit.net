@@ -19,11 +19,11 @@
 
         public IUserGpgKeysClient GpgKey { get; }
 
-        public Task<User> Get(string login)
+        public User Get(string login)
         {
             login.ArgumentNotNullOrEmptyString(nameof(login));
 
-            return ApiConnection.Get<User>(ApiUrls.User(login));
+            return ApiConnection.Get<User>(ApiUrls.User(login)).Result;
         }
 
         public Task<IReadOnlyList<User>> GetAll()
@@ -31,10 +31,7 @@
             return ApiConnection.GetAll<User>(ApiUrls.Users());
         }
 
-        public Task<User> Current()
-        {
-            return ApiConnection.Get<User>(UserEndpoint);
-        }
+        public User Current => ApiConnection.Get<User>(UserEndpoint).Result;
 
         public Task<User> Update(UserUpdate user)
         {

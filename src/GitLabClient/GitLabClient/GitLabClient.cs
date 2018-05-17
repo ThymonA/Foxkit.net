@@ -6,7 +6,7 @@
     {
         public static string GitLabUrl { get; set; } = "https://gitlab.com/api/v4/";
 
-        public static readonly Uri GitLabUri = new Uri(GitLabUrl);
+        public static Uri GitLabUri => new Uri(GitLabUrl);
 
         public GitLabClient(string applicationName)
             : this(new ProductHeaderValue(applicationName))
@@ -24,8 +24,23 @@
         {
         }
 
+        public GitLabClient(string applicationName, string baseAddress, ICredentials credentials)
+            : this(new ProductHeaderValue(applicationName), new InMemoryCredentialStore(credentials), baseAddress)
+        {
+        }
+
+        public GitLabClient(string applicationName, Uri baseAddress, ICredentials credentials)
+            : this(new ProductHeaderValue(applicationName), new InMemoryCredentialStore(credentials), baseAddress)
+        {
+        }
+
         public GitLabClient(IProductHeaderValue productInformation)
             : this(new Connection(productInformation, GitLabUri))
+        {
+        }
+
+        public GitLabClient(IProductHeaderValue productInformation, ICredentials credentials)
+            : this(new Connection(productInformation, new InMemoryCredentialStore(credentials)))
         {
         }
 

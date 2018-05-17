@@ -23,7 +23,7 @@
         /// </summary>
         /// <param name="login"></param>
         /// <returns>A <see cref="User"/></returns>
-        Task<User> Get(string login);
+        User Get(string login);
 
         /// <summary>
         /// Returns a list of users
@@ -35,7 +35,7 @@
         /// Returns a <see cref="User"/> for the current authenticated user
         /// </summary>
         /// <returns>A <see cref="User"/></returns>
-        Task<User> Current();
+        User Current { get; }
 
         /// <summary>
         /// Update the specified <see cref="UserUpdate"/>.
