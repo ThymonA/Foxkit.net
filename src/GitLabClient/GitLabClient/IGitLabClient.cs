@@ -16,8 +16,8 @@
         IConnection Connection { get; }
 
         /// <summary>
-        /// Access GitLab's Authorization API.
+        /// Access GitLab's User API.
         /// </summary>
-        IAuthorizationsClient Authorization { get; }
+        IUserClient User { get; }
     }
 }
