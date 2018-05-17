@@ -35,7 +35,10 @@ Console.WriteLine("Hello "  user.Username + " your account has been created on "
 
 ## Supported Platforms 
 
-* .NET Core 2.0
+* .NETStandard 1.1
+* .NETStandard 2.0
+* .NETFramework 4.5
+* .NETFramework 4.6
 
 ## Getting Started
 
