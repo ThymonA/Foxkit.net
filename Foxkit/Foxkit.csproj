@@ -7,6 +7,7 @@
     <PackageId>Foxkit.NET</PackageId>
     <Authors>Thymon Arens</Authors>
     <Company>Thymon Arens</Company>
+    <Title>Foxkit.NET</Title>
     <Product>Foxkit.NET</Product>
     <Description>Foxkit is a client library that provides an easy way to interact with the GitLab API.</Description>
     <Copyright>Copyright 2018 Thymon Arens Licensed under the MIT License</Copyright>
@@ -15,6 +16,9 @@
     <PackageIconUrl>https://github.com/ThymonA/Foxkit.net/raw/master/foxkit.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/ThymonA/Foxkit.net</RepositoryUrl>
     <PackageTags>Foxkit.NET</PackageTags>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <PackageReleaseNotes>Added support for .NETStandard 1.1 / 2.0 and .NET Framework 4.5 / 4.6</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
