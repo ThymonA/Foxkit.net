@@ -4,11 +4,11 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <Authors>Thymon Arens</Authors>
     <Product>Foxkit.NET</Product>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl>https://avatars1.githubusercontent.com/u/9989505?s=460&amp;v=4</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/ThymonA/Foxkit.net</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/ThymonA/Foxkit.net/raw/master/foxkit.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/ThymonA/Foxkit.net</RepositoryUrl>
-    <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>GitLabClient</PackageTags>
+    <RepositoryType></RepositoryType>
+    <PackageTags>Foxkit.NET</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -17,6 +17,8 @@
     <FileVersion>1.0.0.0</FileVersion>
     <Version>1.0.0</Version>
     <PackageId>Foxkit.NET</PackageId>
+    <Copyright>Copyright 2018 Thymon Arens Licensed under the MIT License</Copyright>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
