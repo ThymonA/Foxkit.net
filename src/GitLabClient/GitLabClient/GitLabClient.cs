@@ -4,7 +4,7 @@
 
     public class GitLabClient : IGitLabClient
     {
-        public static string GitLabUrl { get; set; } = "https://gitlab.com/";
+        public static string GitLabUrl { get; set; } = "https://gitlab.com/api/v4/";
 
         public static readonly Uri GitLabUri = new Uri(GitLabUrl);
 
@@ -77,18 +77,14 @@
 
         private static Uri GetApiUri(Uri uri)
         {
-            var returnUri = uri;
-
             uri.ArgumentNotNull(nameof(uri));
 
             if (uri.Host.Contains("api/"))
             {
-                var baseUrl = uri.ToString().Split("api/")[0];
-
-                returnUri = new Uri(new Uri(baseUrl), new Uri("/api/v4/", UriKind.Relative));
+                uri = new Uri(uri.ToString().Split("api/")[0]);
             }
 
-            return returnUri;
+            return new Uri(uri, new Uri("/api/v4/", UriKind.Relative));
         }
     }
 }

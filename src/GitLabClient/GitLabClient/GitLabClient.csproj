@@ -3,17 +3,20 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <Authors>Thymon Arens</Authors>
-    <Product>GitLabClient</Product>
+    <Product>Foxkit.NET</Product>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/9989505?s=460&amp;v=4</PackageIconUrl>
     <RepositoryUrl>https://github.com/ThymonA/Foxkit.net</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>GitLabClient</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Foxkit is a client library that provides an easy way to interact with the GitLab API.</Description>
     <PackageLicenseUrl>https://github.com/ThymonA/Foxkit.net/blob/master/LICENSE</PackageLicenseUrl>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.0.0</Version>
+    <PackageId>Foxkit.NET</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

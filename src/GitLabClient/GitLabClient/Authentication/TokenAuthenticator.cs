@@ -20,7 +20,7 @@
 
             if (token != null)
             {
-                request.Headers["Authorization"] = string.Format(CultureInfo.InvariantCulture, "Token {0}", token);
+                request.Headers["Private-Token"] = token;
             }
         }
     }

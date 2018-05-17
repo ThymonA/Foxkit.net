@@ -6,7 +6,7 @@
 
     public class UserClient : ApiClient, IUserClient
     {
-        private static readonly Uri UserEndpoint = new Uri(nameof(User), UriKind.Relative);
+        private static readonly Uri UserEndpoint = new Uri(nameof(User).ToLower(), UriKind.Relative);
 
         public UserClient(IApiConnection apiConnection)
             : base(apiConnection)
