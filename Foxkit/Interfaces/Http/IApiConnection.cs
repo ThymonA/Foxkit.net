@@ -11,6 +11,11 @@
     public interface IApiConnection
     {
         /// <summary>
+        /// Returns a <see cref="User"/> for the current authenticated user
+        /// </summary>
+        User CurrentUser { get; }
+
+        /// <summary>
         /// Provides a client connection to make HTTP requests to endpoints
         /// </summary>
         IConnection Connection { get; }

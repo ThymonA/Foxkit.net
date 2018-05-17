@@ -16,8 +16,18 @@
         IConnection Connection { get; }
 
         /// <summary>
+        /// A connection for making API requests against URI endpoints
+        /// </summary>
+        IApiConnection ApiConnection { get; }
+
+        /// <summary>
         /// Access GitLab's User API.
         /// </summary>
         IUserClient User { get; }
+
+        /// <summary>
+        /// Access GitLab's Project API
+        /// </summary>
+        IProjectClient Project { get; }
     }
 }

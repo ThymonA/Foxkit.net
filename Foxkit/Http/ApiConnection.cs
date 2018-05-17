@@ -9,7 +9,30 @@
 
     public class ApiConnection : IApiConnection
     {
+        private static User currentUser;
+
         private readonly IApiPagination pagination;
+
+        public User CurrentUser
+        {
+            get
+            {
+                if (currentUser.IsNullOrDefault())
+                {
+                    try
+                    {
+                        var user = Get<User>(ApiUrls.User()).Result;
+                        currentUser = user;
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+                }
+
+                return currentUser;
+            }
+        }
 
         public IConnection Connection { get; }
 

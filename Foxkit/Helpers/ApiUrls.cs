@@ -4,6 +4,11 @@
 
     public static class ApiUrls
     {
+        public static Uri User()
+        {
+            return "user/".FormatUri();
+        }
+
         public static Uri Users()
         {
             return "users/".FormatUri();

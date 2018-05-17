@@ -75,10 +75,10 @@
         {
             connection.ArgumentNotNull(nameof(connection));
 
-            var apiConnection = new ApiConnection(connection);
-
-            Connection = apiConnection.Connection;
-            User = new UserClient(apiConnection);
+            Connection = connection;
+            ApiConnection = new ApiConnection(connection);
+            User = new UserClient(ApiConnection);
+            Project = new ProjectClient(ApiConnection);
         }
 
         public void SetRequestTimeout(TimeSpan timeout)
@@ -88,7 +88,11 @@
 
         public IConnection Connection { get; }
 
+        public IApiConnection ApiConnection { get; }
+
         public IUserClient User { get; }
+
+        public IProjectClient Project { get; }
 
         private static Uri GetApiUri(Uri uri)
         {
