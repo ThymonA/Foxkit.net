@@ -1,4 +1,4 @@
-﻿namespace GitLabClient
+﻿namespace Foxkit
 {
     public interface IApiResponse<out T>
         where T : class

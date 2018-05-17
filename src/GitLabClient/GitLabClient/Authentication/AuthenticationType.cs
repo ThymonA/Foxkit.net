@@ -1,4 +1,4 @@
-﻿namespace GitLabClient
+﻿namespace Foxkit
 {
     /// <summary>
     /// Authentication protocols supported by the GitHub API

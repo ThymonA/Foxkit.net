@@ -1,4 +1,4 @@
-﻿namespace GitLabClient
+﻿namespace Foxkit
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,7 @@
     public class Connection : IConnection
     {
         public static readonly Uri DefaultGitLabUri = GitLabClient.GitLabUri;
-        private static readonly ICredentialStore AnonymousCredentials = new InMemoryCredentialStore(global::GitLabClient.Credentials.Anonymous);
+        private static readonly ICredentialStore AnonymousCredentials = new InMemoryCredentialStore(Foxkit.Credentials.Anonymous);
 
         public Connection(IProductHeaderValue productInformation)
             : this(productInformation, DefaultGitLabUri, AnonymousCredentials)

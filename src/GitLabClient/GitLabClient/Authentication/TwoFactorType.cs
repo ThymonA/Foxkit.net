@@ -1,4 +1,4 @@
-﻿namespace GitLabClient
+﻿namespace Foxkit
 {
     /// <summary>
     /// Methods for receiving 2FA authentication codes

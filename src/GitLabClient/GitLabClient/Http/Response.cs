@@ -1,4 +1,4 @@
-﻿namespace GitLabClient
+﻿namespace Foxkit
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;

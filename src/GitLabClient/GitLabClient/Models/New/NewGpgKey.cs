@@ -1,4 +1,4 @@
-﻿namespace GitLabClient
+﻿namespace Foxkit
 {
     using System.Diagnostics;
     using System.Globalization;
