@@ -19,6 +19,8 @@
     <PackageId>Foxkit.NET</PackageId>
     <Copyright>Copyright 2018 Thymon Arens Licensed under the MIT License</Copyright>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <AssemblyName>Foxkit</AssemblyName>
+    <RootNamespace>Foxkit</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

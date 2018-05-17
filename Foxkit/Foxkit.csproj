@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>Foxkit.NET</PackageId>
+    <Authors>Thymon Arens</Authors>
+    <Company>Thymon Arens</Company>
+    <Product>Foxkit.NET</Product>
+    <Description>Foxkit is a client library that provides an easy way to interact with the GitLab API.</Description>
+    <Copyright>Copyright 2018 Thymon Arens Licensed under the MIT License</Copyright>
+    <PackageLicenseUrl>https://github.com/ThymonA/Foxkit.net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ThymonA/Foxkit.net</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/ThymonA/Foxkit.net/raw/master/foxkit.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/ThymonA/Foxkit.net</RepositoryUrl>
+    <PackageTags>Foxkit.NET</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.Net.Http" Version="4.3.3" />
+  </ItemGroup>
+
+</Project>
