@@ -75,10 +75,12 @@
         {
             connection.ArgumentNotNull(nameof(connection));
 
-            Connection = connection;
-            ApiConnection = new ApiConnection(connection);
-            User = new UserClient(ApiConnection);
-            Project = new ProjectClient(ApiConnection);
+            DependencyContainer.Register(connection);
+
+            Connection = DependencyContainer.GetService<IConnection>();
+            ApiConnection = DependencyContainer.GetService<IApiConnection>();
+            User = DependencyContainer.GetService<IUserClient>();
+            Project = DependencyContainer.GetService<IProjectClient>();
         }
 
         public void SetRequestTimeout(TimeSpan timeout)

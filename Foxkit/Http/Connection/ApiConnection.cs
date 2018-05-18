@@ -9,43 +9,16 @@
 
     public class ApiConnection : IApiConnection
     {
-        private static User currentUser;
-
         private readonly IApiPagination pagination;
 
-        public User CurrentUser
-        {
-            get
-            {
-                if (currentUser.IsNullOrDefault())
-                {
-                    try
-                    {
-                        var user = Get<User>(ApiUrls.User()).Result;
-                        currentUser = user;
-                    }
-                    catch (Exception)
-                    {
-                        // ignored
-                    }
-                }
-
-                return currentUser;
-            }
-        }
+        public User CurrentUser => DependencyContainer.GetService<IUserClient>().Current;
 
         public IConnection Connection { get; }
 
-        public ApiConnection(IConnection connection)
-            : this(connection, new ApiPagination())
+        public ApiConnection(
+            IConnection connection,
+            IApiPagination pagination)
         {
-        }
-
-        public ApiConnection(IConnection connection, IApiPagination pagination)
-        {
-            connection.ArgumentNotNull(nameof(connection));
-            pagination.ArgumentNotNull(nameof(pagination));
-
             Connection = connection;
             this.pagination = pagination;
         }

@@ -8,11 +8,14 @@
     {
         private static readonly Uri UserEndpoint = new Uri(nameof(User).ToLower(), UriKind.Relative);
 
-        public UserClient(IApiConnection apiConnection)
+        public UserClient(
+            IApiConnection apiConnection,
+            IUserSshKeysClient userSshKeysClient,
+            IUserGpgKeysClient userGpgKeysClient)
             : base(apiConnection)
         {
-            SshKey = new UserSshKeysClient(apiConnection);
-            GpgKey = new UserGpgKeysClient(apiConnection);
+            SshKey = userSshKeysClient;
+            GpgKey = userGpgKeysClient;
         }
 
         public IUserSshKeysClient SshKey { get; }

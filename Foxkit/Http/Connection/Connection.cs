@@ -61,6 +61,7 @@
 
             UserAgent = FormatUserAgent(productInformation);
             BaseAddress = baseAddress;
+            Credentials = credentialStore.GetCredentials().Result;
 
             authenticator = new Authenticator(credentialStore);
             this.httpClient = httpClient;
