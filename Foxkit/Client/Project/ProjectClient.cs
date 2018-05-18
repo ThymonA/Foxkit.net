@@ -1,12 +1,10 @@
 ﻿namespace Foxkit
 {
-    using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     public class ProjectClient : ApiClient, IProjectClient
     {
-        private Uri CurrentUserUrl => ApiUrls.Projects(ApiConnection.CurrentUser.Id);
-
         public ProjectClient(IApiConnection apiConnection)
             : base(apiConnection)
         {
@@ -19,7 +17,22 @@
             return ApiConnection.Get<Project>(ApiUrls.Project(id)).Result;
         }
 
-        public IReadOnlyList<Project> GetAllFromCurrentUser => ApiConnection.GetAll<Project>(CurrentUserUrl).Result;
+        public IReadOnlyList<Project> GetAllForCurrent
+        {
+            get
+            {
+                var currentUser = ApiConnection.CurrentUser;
+
+                if (currentUser.IsNullOrDefault())
+                {
+                    var newList = new List<Project>();
+
+                    return new ReadOnlyCollection<Project>(newList);
+                }
+
+                return ApiConnection.GetAll<Project>(ApiUrls.Projects(currentUser.Id)).Result;
+            }
+        }
 
         public IReadOnlyList<Project> GetAll => ApiConnection.GetAll<Project>(ApiUrls.Projects()).Result;
 

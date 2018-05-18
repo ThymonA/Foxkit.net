@@ -15,9 +15,14 @@
         Project Get(long id);
 
         /// <summary>
-        /// Returns a list of proejcts
+        /// Returns a list of projects
         /// </summary>
         IReadOnlyList<Project> GetAll { get; }
+
+        /// <summary>
+        /// Returns a list of current user projects
+        /// </summary>
+        IReadOnlyList<Project> GetAllForCurrent { get; }
 
         /// <summary>
         /// Returns a list of <see cref="Project"/> specified by user id

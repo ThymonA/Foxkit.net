@@ -6,7 +6,7 @@
     using System.Globalization;
 
     /// <summary>
-    /// Error payload from the API reposnse
+    /// Error payload from the API response
     /// </summary>
     [DebuggerDisplay("{" + nameof(DebuggerDisplay) + ",nq}")]
     public class ApiError
