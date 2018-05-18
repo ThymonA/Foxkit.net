@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="projectId">The Id of the repository</param>
         /// <returns>A list of <see cref="RepositoryContent"/></returns>
-        IReadOnlyList<RepositoryContent> GetAllContents(long projectId);
+        IReadOnlyList<IRepositoryContent> GetAllContents(long projectId);
 
         /// <summary>
         /// Returns the contents of the given directory in a repository
@@ -20,7 +20,7 @@
         /// <param name="projectId">The Id of the repository</param>
         /// <param name="path">Directory path</param>
         /// <returns>A list of <see cref="RepositoryContent"/></returns>
-        IReadOnlyList<RepositoryContent> GetAllContents(long projectId, string path);
+        IReadOnlyList<IRepositoryContent> GetAllContents(long projectId, string path);
 
         /// <summary>
         /// Returns the contents of the given directory in a repository
@@ -29,6 +29,23 @@
         /// <param name="path">Directory path</param>
         /// <param name="branch">Repository branch</param>
         /// <returns>A list of <see cref="RepositoryContent"/></returns>
-        IReadOnlyList<RepositoryContent> GetAllContents(long projectId, string path, string branch);
+        IReadOnlyList<IRepositoryContent> GetAllContents(long projectId, string path, string branch);
+
+        /// <summary>
+        /// Returns the content of the given file in a repository
+        /// </summary>
+        /// <param name="projectId">The Id of the repository</param>
+        /// <param name="path">File path</param>
+        /// <returns>A list of <see cref="RepositoryContent"/></returns>
+        RepositoryFile GetFile(long projectId, string path);
+
+        /// <summary>
+        /// Returns the content of the given file in a repository
+        /// </summary>
+        /// <param name="projectId">The Id of the repository</param>
+        /// <param name="path">File path</param>
+        /// <param name="branch">Repository branch</param>
+        /// <returns>A list of <see cref="RepositoryContent"/></returns>
+        RepositoryFile GetFile(long projectId, string path, string branch);
     }
 }
