@@ -32,10 +32,13 @@
         public List<string> Tags { get; set; }
 
         [JsonProperty("ssh_url_to_repo")]
-        public string SshUrl { get; set; }
+        public string CloneSshUrl { get; set; }
 
         [JsonProperty("http_url_to_repo")]
-        public string HttpUrl { get; set; }
+        public string CloneHttpUrl { get; set; }
+
+        [JsonProperty("web_url")]
+        public string WebUrl { get; set; }
 
         [JsonProperty("avatar_url")]
         public string AvatarUrl { get; set; }

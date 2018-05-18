@@ -29,8 +29,4 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net46'">
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Client\Repository\" />
-  </ItemGroup>
 </Project>

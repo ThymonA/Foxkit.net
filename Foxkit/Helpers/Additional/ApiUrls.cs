@@ -53,5 +53,30 @@
         {
             return "users/{0}/projects/".FormatUri(id);
         }
+
+        public static Uri RepositoryContent(long projectId)
+        {
+            return "projects/{0}/repository/tree/".FormatUri(projectId);
+        }
+
+        public static Uri RepositoryContent(long projectId, string path)
+        {
+            return "projects/{0}/repository/tree/?path={1}".FormatUri(projectId, path.UrlEncode());
+        }
+
+        public static Uri RepositoryContent(long projectId, string path, string branch)
+        {
+            return "projects/{0}/repository/tree/?path={1}&ref={2}".FormatUri(projectId, path.UrlEncode(), branch);
+        }
+
+        public static Uri RepositoryFile(long projectId, string filePath)
+        {
+            return "projects/{0}/repository/files/{1}/?ref=master".FormatUri(projectId, filePath.UrlEncode());
+        }
+
+        public static Uri RepositoryFile(long projectId, string filePath, string branch)
+        {
+            return "projects/{0}/repository/files/{1}/?ref={2}".FormatUri(projectId, filePath.UrlEncode(), branch);
+        }
     }
 }

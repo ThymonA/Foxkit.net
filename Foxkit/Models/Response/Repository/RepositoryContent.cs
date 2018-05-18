@@ -1,21 +1,52 @@
 ﻿namespace Foxkit
 {
-    using Foxkit.Helpers.Extensions;
-
     using Newtonsoft.Json;
 
-    public class RepositoryContent
+    public class RepositoryContent : IRepositoryContent
     {
+        [JsonIgnore]
+        public RepositoryFile RepositoryFile { get; set; }
+
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Sha { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("type")]
-        private string TypeString { get; set; }
+        public string Type { get; set; }
 
         [JsonIgnore]
-        public ContentType Type => TypeString.ToEnum(ContentType.Unknown);
+        public ContentType ContentType => (ContentType)(ContentType?)Mode;
+
+        [JsonProperty("path")]
+        public string Path { get; set; }
+
+        [JsonProperty("mode")]
+        public int Mode { get; set; }
+
+        [JsonIgnore]
+        public string Branch => RepositoryFile.Branch;
+
+        [JsonIgnore]
+        public string GitUrl => RepositoryFile.GitUrl;
+
+        [JsonIgnore]
+        public string HtmlUrl => RepositoryFile.HtmlUrl;
+
+        [JsonIgnore]
+        public string RawUrl => RepositoryFile.RawUrl;
+
+        [JsonIgnore]
+        public string Content => RepositoryFile.Content;
+
+        [JsonIgnore]
+        public string CommitId => RepositoryFile.CommitId;
+
+        [JsonIgnore]
+        public string LastCommitId => RepositoryFile.LastCommitId;
+
+        [JsonIgnore]
+        public int Size => RepositoryFile.Size;
     }
 }

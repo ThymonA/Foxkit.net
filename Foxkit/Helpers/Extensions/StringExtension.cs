@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Text;
     using System.Text.RegularExpressions;
 
     public static class StringExtension
@@ -35,6 +36,19 @@
             return header.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Trim())
                 .ToList();
+        }
+
+        public static string UrlEncode(this string input)
+        {
+            var chars = input.ToCharArray();
+            var encodedValue = new StringBuilder();
+
+            foreach (var c in chars)
+            {
+                encodedValue.Append("%" + ((int)c).ToString("X2"));
+            }
+
+            return encodedValue.ToString();
         }
     }
 }

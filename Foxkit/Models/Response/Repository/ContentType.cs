@@ -1,28 +1,38 @@
 ﻿namespace Foxkit
 {
-    using System.ComponentModel;
-
     /// <summary>
     /// Repository content types
     /// </summary>
     public enum ContentType
     {
         /// <summary>
-        /// Content Type: Unknown
+        /// Unknown (type)
         /// </summary>
-        [Description("unknown")]
         Unknown = 0,
 
         /// <summary>
-        /// Content Type: File
+        /// File (blob)
         /// </summary>
-        [Description("blob")]
-        File = 1,
+        File = 100644,
 
         /// <summary>
-        /// Content Type: Directory
+        /// Executable (blob)
         /// </summary>
-        [Description("tree")]
-        Directory = 2
+        Executable = 100755,
+
+        /// <summary>
+        /// Subdirectory (tree)
+        /// </summary>
+        Subdirectory = 040000,
+
+        /// <summary>
+        /// Reference to another file or directory (blob)
+        /// </summary>
+        Symlink = 120000,
+
+        /// <summary>
+        /// Submodule (commit)
+        /// </summary>
+        Submodule = 160000
     }
 }
