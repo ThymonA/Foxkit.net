@@ -1,7 +1,0 @@
-﻿{
-  "Url": "{GitLab Url}",
-  "Username": "{GitLab Username}",
-  "Password": "{GitLab Password}",
-  "PersonalAccessToken": "{GitLab Personal Access Token}",
-  "TestRepository": "{GitLab Test Repository}"
-}

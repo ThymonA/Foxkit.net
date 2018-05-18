@@ -1,8 +1,5 @@
 ﻿namespace Foxkit.Tests.Configuration
 {
-    using System;
-    using System.Reflection;
-
     using Newtonsoft.Json;
 
     public class Configuration

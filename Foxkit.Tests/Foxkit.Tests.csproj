@@ -14,10 +14,4 @@
     <ProjectReference Include="..\Foxkit\Foxkit.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Configuration\configuration.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
