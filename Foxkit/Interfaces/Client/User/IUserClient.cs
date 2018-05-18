@@ -29,7 +29,7 @@
         /// Returns a list of users
         /// </summary>
         /// <returns>A list of <see cref="User"/></returns>
-        Task<IReadOnlyList<User>> GetAll();
+        IReadOnlyList<User> GetAll { get; }
 
         /// <summary>
         /// Returns a <see cref="User"/> for the current authenticated user

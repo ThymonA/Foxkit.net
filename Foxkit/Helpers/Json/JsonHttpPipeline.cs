@@ -55,7 +55,7 @@
 
                 if (!string.IsNullOrEmpty(body) && body != "{}")
                 {
-                    #if NET40
+                    #if NET40 || NET45 || NET46
                     var typeIsDictionary = typeof(IDictionary).IsAssignableFrom(typeof(T));
                     var typeIsEnumerable = typeof(IEnumerable).IsAssignableFrom(typeof(T));
                     #else

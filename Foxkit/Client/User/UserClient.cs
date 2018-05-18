@@ -26,10 +26,7 @@
             return ApiConnection.Get<User>(ApiUrls.User(login)).Result;
         }
 
-        public Task<IReadOnlyList<User>> GetAll()
-        {
-            return ApiConnection.GetAll<User>(ApiUrls.Users());
-        }
+        public IReadOnlyList<User> GetAll => ApiConnection.GetAll<User>(ApiUrls.Users()).Result;
 
         public User Current => ApiConnection.Get<User>(UserEndpoint).Result;
 

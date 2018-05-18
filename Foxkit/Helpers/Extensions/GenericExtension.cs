@@ -22,7 +22,7 @@
 
             var argumentType = argument.GetType();
 
-            #if NET40
+            #if NET40 || NET45 || NET46
             if (argumentType.IsValueType && argumentType != methodType)
             {
                 var obj = Activator.CreateInstance(argument.GetType());
