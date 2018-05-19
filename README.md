@@ -4,35 +4,6 @@
 
 Foxkit is a client library that provides an easy way to interact with the [GitLab API](https://docs.gitlab.com/ee/api/)
 
-## Usage examples
-
-Basic authentication
-```c#
-var credentials = new Credentials("ThymonA", "Secret password")
-var client = new GitLabClient("ThymonApp", "https://git.thymonexample.com/", credentials);
-var currentUser = client.User.Current;
-
-Console.WriteLine("Hello "  user.Username + " your account has been created on " + user.CreatedAt)
-```
-
-Oauth authentication
-```c#
-var credentials = new Credentials("Personal Access Token")
-var client = new GitLabClient("ThymonApp", "https://git.thymonexample.com/", credentials);
-var currentUser = client.User.Current;
-
-Console.WriteLine("Hello "  user.Username + " your account has been created on " + user.CreatedAt)
-```
-
-Bearer authentication
-```c#
-var credentials = new Credentials("Bearer Token", AuthenticationType.Bearer)
-var client = new GitLabClient("ThymonApp", "https://git.thymonexample.com/", credentials);
-var currentUser = client.User.Current;
-
-Console.WriteLine("Hello "  user.Username + " your account has been created on " + user.CreatedAt)
-```
-
 ## Supported Platforms 
 
 * .NETStandard 1.1
